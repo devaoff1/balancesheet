@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Ratios Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Financial Ratios Calculator</h1>
+        <label for="fixedAssets">Fixed Assets:</label>
+        <input type="number" id="fixedAssets" required>
+        
+        <label for="currentAssets">Current Assets:</label>
+        <input type="number" id="currentAssets" required>
+        
+        <label for="reserves">Reserves:</label>
+        <input type="number" id="reserves" required>
+        
+        <label for="termLiabilities">Term Liabilities:</label>
+        <input type="number" id="termLiabilities" required>
+        
+        <label for="currentLiabilities">Current Liabilities:</label>
+        <input type="number" id="currentLiabilities" required>
+        
+        <button onclick="calculateRatios()">Calculate Ratios</button>
+        
+        <div id="results">
+            <p>Current Ratio: <span id="currentRatio"></span></p>
+            <p>TOL / Equity Ratio: <span id="tolEquityRatio"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateRatios() {
+            const fixedAssets = parseFloat(document.getElementById('fixedAssets').value);
+            const currentAssets = parseFloat(document.getElementById('currentAssets').value);
+            const reserves = parseFloat(document.getElementById('reserves').value);
+            const termLiabilities = parseFloat(document.getElementById('termLiabilities').value);
+            const currentLiabilities = parseFloat(document.getElementById('currentLiabilities').value);
+
+            const currentRatio = currentAssets / currentLiabilities;
+            const tolEquityRatio = (termLiabilities + currentLiabilities) / reserves;
+
+            document.getElementById('currentRatio').textContent = currentRatio.toFixed(2);
+            document.getElementById('tolEquityRatio').textContent = tolEquityRatio.toFixed(2);
+        }
+    </script>
+</body>
+</html>
